@@ -134,7 +134,6 @@
             "aksClusterName": "[basics('clusterName')]",
             "dnsPrefix": "[basics('clusterName')]",
             "agentVMSize": "[steps('clusterConfig').vmSize]",
-            "applicationResourceName": "[steps('clusterConfig').vmNamePrefix]",            
             "vNetNewOrExisting": "[steps('clusterNetworking').vnet.newOrExisting]",
             "virtualNetworkResourceGroup": "[steps('clusterNetworking').vnet.resourceGroup]",
             "virtualNetworkName": "[steps('clusterNetworking').vnet.name]",
