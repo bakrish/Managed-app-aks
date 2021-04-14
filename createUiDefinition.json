@@ -1,0 +1,147 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+    "handler": "Microsoft.Azure.CreateUIDef",
+    "version": "0.1.2-preview",
+    "parameters": {
+        "basics": [
+            {
+                "name": "clusterName",
+                "type": "Microsoft.Common.TextBox",
+                "label": "AKS Cluster Name",
+                "defaultValue": "",
+                "constraints": {
+                  "required": true,
+                  "regex": "^[a-z0-9A-Z]{1,10}$",
+                  "validationMessage": "Only letters and numbers are allowed, and the value must be 1-10 characters long."
+                }
+            }
+        ],
+        "steps": [
+            {
+                "name": "clusterConfig",
+                "label": "Cluster configuration",
+                "subLabel": {
+                    "preValidation": "Configure the cluster details",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Cluster Settings",
+                "elements": [
+                    {
+                        "name": "vmSize",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "Virtual machine size",
+                        "toolTip": "The size of the virtual machine",
+                        "recommendedSizes": [
+                            "Standard_D1_v2"
+                        ],
+                        "constraints": {
+                            "allowedSizes": [
+                                "Standard_D1_v2"
+                            ]
+                        },
+                        "osPlatform": "Linux",
+                        "count": 3
+                    }
+                ]
+            },
+            {
+                "name": "clusterNetworking",
+                "label": "Cluster Networking settings",
+                "subLabel": {
+                    "preValidation": "Configure the Network settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Network settings",
+                "elements": [
+                    {
+                        "name": "vnet",
+                        "type": "Microsoft.Network.VirtualNetworkCombo",
+                        "label": {
+                          "virtualNetwork": "Virtual network",
+                          "subnets": "Subnets"
+                        },
+                        "toolTip": {
+                          "virtualNetwork": "",
+                          "subnets": ""
+                        },
+                        "defaultValue": {
+                          "name": "vnet01",
+                          "addressPrefixSize": "/16"
+                        },
+                        "constraints": {
+                          "minAddressPrefixSize": "/16"
+                        },
+                        "options": {
+                          "hideExisting": false
+                        },
+                        "subnets": {
+                          "subnet1": {
+                            "label": "First subnet",
+                            "defaultValue": {
+                              "name": "subnet-1",
+                              "addressPrefixSize": "/24"
+                            },
+                            "constraints": {
+                              "minAddressPrefixSize": "/24",
+                              "minAddressCount": 12,
+                              "requireContiguousAddresses": true
+                            }
+                          }
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "serviceCidr",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Service CIDR",
+                        "defaultValue": "10.0.0.0/16",
+                        "toolTip": "Use only allowed characters",
+                        "placeholder": "",
+                        "constraints": {
+                          "required": true
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "dnsServiceIP",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "DNS Service IP",
+                        "defaultValue": "10.0.0.10",
+                        "toolTip": "Use only allowed characters",
+                        "placeholder": "",
+                        "constraints": {
+                          "required": true
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "dockerBridgeCidr",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "A CIDR notation IP for Docker bridge.",
+                        "defaultValue": "172.17.0.1/16",
+                        "toolTip": "Use only allowed characters",
+                        "placeholder": "",
+                        "constraints": {
+                          "required": true
+                        },
+                        "visible": true
+                    }
+                ]
+            }
+        ],
+        "outputs": {
+            "location": "[location()]",
+            "aksClusterName": "[basics('clusterName')]",
+            "dnsPrefix": "[basics('clusterName')]",
+            "agentVMSize": "[steps('clusterConfig').vmSize]",
+            "applicationResourceName": "[steps('clusterConfig').vmNamePrefix]",            
+            "vNetNewOrExisting": "[steps('clusterNetworking').vnet.newOrExisting]",
+            "virtualNetworkResourceGroup": "[steps('clusterNetworking').vnet.resourceGroup]",
+            "virtualNetworkName": "[steps('clusterNetworking').vnet.name]",
+            "subnetName": "[steps('clusterNetworking').vnet.subnet1.name]",
+            "serviceCidr": "[steps('clusterNetworking').serviceCidr]",
+            "dnsServiceIP": "[steps('clusterNetworking').dnsServiceIP]",
+            "dockerBridgeCidr": "[steps('clusterNetworking').dockerBridgeCidr]"
+        }
+    }
+}
