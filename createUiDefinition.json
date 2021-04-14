@@ -32,13 +32,8 @@
                         "label": "Virtual machine size",
                         "toolTip": "The size of the virtual machine",
                         "recommendedSizes": [
-                            "Standard_D1_v2"
+                            "Standard_D3_v2"
                         ],
-                        "constraints": {
-                            "allowedSizes": [
-                                "Standard_D1_v2"
-                            ]
-                        },
                         "osPlatform": "Linux",
                         "count": 3
                     }
