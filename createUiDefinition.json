@@ -137,7 +137,7 @@
             "vNetNewOrExisting": "[steps('clusterNetworking').vnet.newOrExisting]",
             "virtualNetworkResourceGroup": "[steps('clusterNetworking').vnet.resourceGroup]",
             "virtualNetworkName": "[steps('clusterNetworking').vnet.name]",
-            "subnetName": "[steps('clusterNetworking').vnet.subnet1.name]",
+            "subnetName": "[steps('clusterNetworking').vnet.subnets.subnet1.name]",
             "serviceCidr": "[steps('clusterNetworking').serviceCidr]",
             "dnsServiceIP": "[steps('clusterNetworking').dnsServiceIP]",
             "dockerBridgeCidr": "[steps('clusterNetworking').dockerBridgeCidr]"

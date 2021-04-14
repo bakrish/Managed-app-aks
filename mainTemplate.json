@@ -84,7 +84,7 @@
         "subnetName": {
             "type": "string",
             "metadata": {
-                "description": "Virtual network Name"
+                "description": "Virtual network subnet Name"
             }
         },
         "serviceCidr": {
