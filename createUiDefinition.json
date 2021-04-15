@@ -122,7 +122,56 @@
                         "visible": true
                     }
                 ]
-            }
+            },
+            {
+              "name": "workloadAutomation",
+              "label": "Workload Automation Details",
+              "subLabel": {
+                  "preValidation": "Configure Workload automation details",
+                  "postValidation": "Done"
+              },
+              "bladeTitle": "Workload automation Settings",
+              "elements": [
+                  {
+                    "name": "waRegistryUsername",
+                    "type": "Microsoft.Common.TextBox",
+                    "label": "Username for WA registry.",
+                    "defaultValue": "wauser",
+                    "toolTip": "Use only allowed characters",
+                    "placeholder": "",
+                    "constraints": {
+                      "required": true
+                    },
+                    "visible": true
+                },
+                {
+                  "name": "waRegistryPassword",
+                  "type": "Microsoft.Common.PasswordBox",
+                  "label": {
+                    "password": "Password",
+                    "confirmPassword": "Confirm password"
+                  },
+                  "toolTip": "Use only allowed characters",
+                  "constraints": {
+                    "required": false
+                  },
+                  "visible": true
+                },
+                {
+                  "name": "waNamespace",
+                  "type": "Microsoft.Common.TextBox",
+                  "label": "Workload Automation namespace",
+                  "defaultValue": "wa",
+                  "toolTip": "Use only allowed characters",
+                  "placeholder": "",
+                  "constraints": {
+                    "required": true
+                  },
+                  "visible": true
+                }
+              ]
+          }
+
         ],
         "outputs": {
             "location": "[location()]",
