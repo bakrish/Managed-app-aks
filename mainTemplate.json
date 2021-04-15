@@ -120,7 +120,7 @@
         "dsIdentityName": "dsId",
         "dsRoleAssignmentId": "[guid(resourceGroup().id, variables('dsRoleDefinitionId'), resourceId('Microsoft.ManagedIdentity/identities', variables('dsIdentityName')))]",
         "dsRoleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'b24988ac-6180-42a0-ab88-20f7382dd24c')]",
-        "installScriptUri": ""
+        "installScriptUri": "https://raw.githubusercontent.com/bakrish/Managed-app-aks/master/wadeploy.sh"
     },
     "resources": [
         {
