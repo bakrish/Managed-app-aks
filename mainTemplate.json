@@ -203,6 +203,10 @@
             "name": "runBashWithOutputs",
             "location": "[resourceGroup().location]",
             "kind": "AzureCLI",
+             "dependsOn": [
+                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', variables('dsIdentityName'))]",
+                "[resourceId('Microsoft.ContainerService/managedClusters', parameters('aksClusterName'))]"
+            ],
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
