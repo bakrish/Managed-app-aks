@@ -210,7 +210,6 @@
                 }
             },
             "properties": {
-                "forceUpdateTag": "[parameters('utcValue')]",
                 "AzCliVersion": "2.15.0",
                 "timeout": "PT30M",
                 "environmentVariables": [
