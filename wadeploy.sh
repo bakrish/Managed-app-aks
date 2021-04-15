@@ -8,5 +8,6 @@ az aks install-cli
 # Get WA cluster credentials
 az aks get-credentials -g $RESOURCEGROUP -n $CLUSTERNAME
 kubectl create namespace wa 
+kubectl create deployment nginx image=nginx
 # TODO: Deploy WA automation
-kubectl deployment create nginx image=nginx
+echo "All Done!"
